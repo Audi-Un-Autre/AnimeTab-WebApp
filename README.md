@@ -9,5 +9,4 @@ Mission: Taking the notepad of animes to the cloud.
 - [x] Java 14
 - [x] Spring Boot    [backend rest api]
 - [x] Angular        [frontend]
-- [x] AWS
-- [x] MySQL
+- [x] AWS            [RDS/MySQL]
