@@ -1,0 +1,21 @@
+
+@font-face{
+    font-family: "Earth Orbiter";
+    src:url("../../assets/fonts/earthorbiter.ttf");
+}
+
+@font-face{
+    font-family: "Montserrat";
+    src:url("../../assets/fonts/Montserrat-Regular.ttf");
+}
+
+.login {
+    font-family: "Montserrat";
+    font-size: 30px;
+    color:black;
+}
+
+.banner{
+    font-family: "Earth Orbiter";
+    font-size: 300px;
+}

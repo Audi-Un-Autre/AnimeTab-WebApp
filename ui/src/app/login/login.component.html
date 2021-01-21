@@ -1,0 +1,13 @@
+
+<p>Login</p>
+<form class="login">
+    <mat-label>username</mat-label> <br />
+    <input matInput placeholder="@email.com" [formControl]="email" required>
+    <br />
+
+    <mat-label>password</mat-label> <br />
+    <input matInput [type]="hide ? 'password' : 'text'">
+</form>
+
+<button mat-raised-button color="primary" routerLink="/user">Log In</button>
+
