@@ -6,8 +6,8 @@ Mission: Taking the notepad of animes to the cloud.
 <br />
 
 # Stacks
--[x] Java 14
--[x] Spring Boot    [backend rest api]
--[x] Angular        [frontend]
--[x] AWS
--[x] MySQL
+- [x] Java 14
+- [x] Spring Boot    [backend rest api]
+- [x] Angular        [frontend]
+- [x] AWS
+- [x] MySQL
