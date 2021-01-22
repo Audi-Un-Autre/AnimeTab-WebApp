@@ -1,5 +1,5 @@
 /*
-    abstract model extends to:
+    abstract model will extend to:
         anime
         manga
         manwha

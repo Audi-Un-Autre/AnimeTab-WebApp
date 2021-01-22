@@ -1,3 +1,11 @@
+
+/*
+    Basic database operations
+    
+    Future updates will have a few more complex queries
+    for search queries within the webapp.
+*/
+
 package com.animetab.yoshi.service;
 
 import java.util.List;

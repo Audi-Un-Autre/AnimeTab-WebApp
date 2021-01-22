@@ -11,6 +11,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { SplashComponent } from './splash/splash.component';
+import { EntryListComponent } from './entry-list/entry-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { SplashComponent } from './splash/splash.component';
     LoginComponent,
     HomeComponent,
     UserComponent,
-    SplashComponent
+    SplashComponent,
+    EntryListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { SplashComponent } from './splash/splash.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

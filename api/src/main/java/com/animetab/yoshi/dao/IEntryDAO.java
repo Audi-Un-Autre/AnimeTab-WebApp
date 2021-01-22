@@ -1,5 +1,5 @@
 /*
-    Database functions/services
+    repository interface
 */
 
 package com.animetab.yoshi.dao;
