@@ -4,6 +4,8 @@
     
     Future updates will have a few more complex queries
     for search queries within the webapp.
+
+    
 */
 
 package com.animetab.yoshi.service;
@@ -39,5 +41,4 @@ public class EntryService {
     public Entry viewEntry(Integer entryID){
         return entryRepo.findById(entryID).get();
     }
-    
 }
