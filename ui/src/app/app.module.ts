@@ -6,12 +6,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { SplashComponent } from './splash/splash.component';
 import { EntryListComponent } from './entry-list/entry-list.component';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from "@angular/material/card";
+import { MatInputModule } from '@angular/material/input';
+
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -29,8 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatButtonModule,
     MatFormFieldModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
