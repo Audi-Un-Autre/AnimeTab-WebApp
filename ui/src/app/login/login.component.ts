@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { AuthServiceService } from '../service/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +8,33 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  hide:boolean = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
   
-  constructor() { }
+  formGroup!:FormGroup;
+
+  constructor(private authService: AuthServiceService) { }
 
   ngOnInit(): void {
+  }
+
+  initForm(){
+    
+    this.formGroup = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+
+    })
+  }
+
+  
+  loginProcess(){
+    if (this.formGroup.valid){
+      this.authService.authLogin(this.formGroup.value).subscribe(result => {
+        if (result.success)
+          console.log(result);
+        else
+          alert(result.message);
+      })
+    }
   }
 
 }

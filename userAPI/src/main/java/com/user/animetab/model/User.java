@@ -37,8 +37,8 @@ import javax.persistence.Table;
 public class User {
     
     @Id
-    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int userID;
 
     @Column(name = "email")
@@ -75,6 +75,10 @@ public class User {
 
     public String getUsername(){
         return username;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     public Role getRole(){

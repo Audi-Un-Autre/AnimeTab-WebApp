@@ -1,33 +1,25 @@
 
 
-
 <div class = "container">
+    <div class = "login">
+        <div class = "banner"> Anime Tab </div>
+        <mat-card>
+            <div class = "signin-label">Sign in</div>
+                <form>
+                    <mat-form-field style = "width:300px" appearance = "outline" class = "field">
+                        <mat-label>email</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    
+                    <br>
 
-    <div class = "banner">
-        Anime Tab
-        <div class = "login">
-            <mat-card>
-                Sign in
-                <form class>
-                    <div class = "fields">
-                        <mat-form-field appearance = "outline" class = "field">
-                            <mat-label>username</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        
-                        <br>
-
-                        <mat-form-field appearance = "outline" class = "field">
-                            <mat-label>password</mat-label>
-                            <input matInput type = "password">
-                        </mat-form-field>
-                    </div>
+                    <mat-form-field style = "width:300px" appearance = "outline" class = "field">
+                        <mat-label>password</mat-label>
+                        <input matInput type = "password">
+                    </mat-form-field>
                 </form>
 
                 <button mat-raised-button color="primary" routerLink="/user" class = "button">Log In</button>
-            </mat-card>
-        </div>
+        </mat-card>
     </div>
-
 </div>
-

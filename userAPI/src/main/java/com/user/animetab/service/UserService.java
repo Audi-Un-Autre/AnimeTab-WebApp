@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
 @Service
 @Transactional
 public class UserService {
@@ -21,15 +22,35 @@ public class UserService {
         return iUserDAO.findAll();
     }
 
-    public User findByUserID(int userID){
+    public User findByUserID(Integer userID){
         return iUserDAO.findById(userID).get();
     }
 
     public void addNewUser(User newUser){
+        // store hash of password in database
+        /*
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newUser.getPassword());
+        newUser.setPassword(encodedPassword);
+        */
         iUserDAO.save(newUser);
     }
 
-    public void deleteUser(int userID){
+    public void deleteUser(Integer userID){
         iUserDAO.deleteById(userID);
+    }
+
+    public boolean authLogin(User user){
+        User foundUser = iUserDAO.findByEmail(user.getEmail());
+
+        // email login does not exist
+        if (foundUser == null) return false;
+
+        // compare passwords of the found email
+        if (foundUser.getPassword().equals(user.getPassword())){
+            return true;
+        }
+        else
+            return false;
     }
 }

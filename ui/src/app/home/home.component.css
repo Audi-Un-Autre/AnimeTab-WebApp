@@ -13,15 +13,23 @@
     font-family: "Montserrat";
     font-size: 30px;
     color:black;
+    display: flex;
+    flex-direction: column;
 }
 
 .banner{
     font-family: "Earth Orbiter";
     font-size: 300px;
-    min-width: 70%;
+
+    /* glow on text */
+    text-align: center;
+    text-shadow: 0 0 5px white, 0 0 10px rgb(237, 148, 255), 
+                 0 0 15px rgb(237, 148, 255), 0 0 20px rgb(237, 148, 255), 
+                 0 0 25px rgb(237, 148, 255), 0 0 30px rgb(237, 148, 255);
 }
 
 .container{
+    /* background img cover entire screen */
     background-image: url('../../assets/img/indexbg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -29,9 +37,13 @@
     height: 100%;
     position: absolute; top: 0; left: 0;
 
-    text-align: center;
-    text-shadow: 0 0 5px white, 0 0 10px rgb(237, 148, 255), 
-                 0 0 15px rgb(237, 148, 255), 0 0 20px rgb(237, 148, 255), 
-                 0 0 25px rgb(237, 148, 255), 0 0 30px rgb(237, 148, 255);
-    
+    /* align all divs to the center horizontally and vertically */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+button{
+    margin: 5px;
 }

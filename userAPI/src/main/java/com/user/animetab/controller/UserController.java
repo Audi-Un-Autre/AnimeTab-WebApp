@@ -31,7 +31,17 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteUser(@RequestBody int userID){
-        userService.deleteUser(userID);
+    public void deleteUser(@RequestBody User user){
+        userService.deleteUser(user.getUserID());
+    }
+
+    
+    @PostMapping("/login")
+    public String checkLogin(@RequestBody User user){
+        boolean authCorrect = userService.authLogin(user);
+        if (authCorrect)
+            return "User found.";
+        else
+            return "User does not exist.";
     }
 }
