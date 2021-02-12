@@ -40,6 +40,18 @@ public class UserService {
         iUserDAO.deleteById(userID);
     }
 
+    public String authNewUser(User user){
+        if (user == null) return null;
+
+        User foundUser = iUserDAO.findByEmail(user.getEmail());
+        if (foundUser != null) return "email_exists";
+
+        User foundUsername = iUserDAO.findByUsername(user.getUsername());
+        if (foundUsername != null) return "username_exists";
+        return "not_found";
+        
+    }
+
     public boolean authLogin(User user){
         User foundUser = iUserDAO.findByEmail(user.getEmail());
 

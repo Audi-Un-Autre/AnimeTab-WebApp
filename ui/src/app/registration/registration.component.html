@@ -1,0 +1,76 @@
+
+<div class = "container">
+    <div class = "login">
+
+        <a routerLink = "/">
+            <div class = "banner"> Anime Tab </div>
+        </a>
+        <mat-card>
+
+            <div class = "signin-label" >Create new account</div>
+
+                <form [formGroup]="newAccountForm" (ngSubmit) = "onSubmit()">
+                <!-- USERNAME -->
+                    <mat-form-field style = "width:300px" appearance = "outline" class = "field">
+                        <mat-label>username</mat-label>
+                        <input matInput required
+                            formControlName = "username" 
+                            type = "text" 
+                            [ngClass]="(values.username.dirty || submitted) &&
+                                        values.username.errors ? 'is-invalid' : ''">
+
+                            <!-- username invalid -->
+                            <div class = "invalid-feedback">
+                            A username is required to sign up.
+                            </div>
+                    </mat-form-field>
+
+                    <br>
+
+                <!-- EMAIL -->
+                    <mat-form-field style = "width:300px" appearance = "outline" class = "field">
+                        <mat-label>email</mat-label>
+                        <input matInput required
+                            formControlName = "email" 
+                            type = "email" 
+                            [ngClass]="(values.email.dirty || submitted) &&
+                                        values.email.errors ? 'is-invalid' : ''">
+                            
+                            <!-- email invalid -->
+                            <div class = "invalid-feedback">
+                            A valid email is required to sign up.
+                            </div>
+                    </mat-form-field>
+
+                    <br>
+
+                <!-- PASSWORD -->
+                    <mat-form-field style = "width:300px" appearance = "outline" class = "field">
+                        <mat-label>password</mat-label>
+                        <input matInput required
+                            formControlName = "password" 
+                            type = "password" 
+                            [ngClass]="(values.password.dirty || submitted) &&
+                                        values.password.errors ? 'is-invalid' : ''">
+
+                            <!-- password invalid -->
+                            <div class = "invalid-feedback">
+                            Password is required to sign up.
+                            </div>
+                    </mat-form-field>
+                    <p>* required fields</p>
+                    
+                <!-- SUBMIT -->
+                    <button mat-raised-button color="primary" class = "button"
+                            [ngClass]="(newAccountFail && submitted) ? 'is-invalid' : ''">
+                            Create
+                    </button>
+                    <p class = "invalid-feedback">
+                        {{newAccountError}}
+                    </p>
+                </form>
+
+        </mat-card>
+
+    </div>
+</div>

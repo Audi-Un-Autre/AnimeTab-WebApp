@@ -31,10 +31,6 @@
     flex-direction: column;
 }
 
-.loginError{
-    color:red;
-}
-
 mat-label, .signin-label, input {
     font-family: "Montserrat";
 }
@@ -44,11 +40,13 @@ mat-label, .signin-label, input {
 }
 
 button{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    margin-top: 0%;
+    margin-top: 20%;
     margin-left: 82%;
+}
+
+p{
+    font-family: "Montserrat";
+    font-size: 10px;
 }
 
 a{

@@ -2,24 +2,54 @@
 
 <div class = "container">
     <div class = "login">
-        <div class = "banner"> Anime Tab </div>
+
+        <a routerLink = "/">
+            <div class = "banner"> Anime Tab </div>
+        </a>
+
         <mat-card>
+
             <div class = "signin-label">Sign in</div>
-                <form>
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <!-- EMAIL -->
                     <mat-form-field style = "width:300px" appearance = "outline" class = "field">
                         <mat-label>email</mat-label>
-                        <input matInput>
+                        <input matInput required
+                        formControlName = "email"
+                        type = "email"
+                        [ngClass]="(values.email.dirty || submitted) &&
+                                    values.email.errors ? 'is-invalid' : ''">
+                                    <div class = "invalid-feedback">
+                                        Email is required.
+                                    </div>
                     </mat-form-field>
                     
                     <br>
 
+                <!-- PASSWORD -->
                     <mat-form-field style = "width:300px" appearance = "outline" class = "field">
                         <mat-label>password</mat-label>
-                        <input matInput type = "password">
+                        <input matInput required
+                        formControlName = "password" 
+                        type = "password"
+                        [ngClass]="(values.password.dirty || submitted) &&
+                                    values.password.errors ? 'is-invalid' : ''">
+                                    <div class = "invalid-feedback">
+                                        Password is required.
+                                    </div>
                     </mat-form-field>
+                    <div class = "loginError" *ngIf="loginError">
+                        Incorrect username and/or password.
+                    </div>
+
+                <!-- SUBMIT -->
+                    <button mat-raised-button color="primary" class = "button">Log In</button>
                 </form>
 
-                <button mat-raised-button color="primary" routerLink="/user" class = "button">Log In</button>
+                <button mat-raised-button color="primary" routerLink = "/new-user" class = "account-button">Create an account</button>
+
         </mat-card>
+        
     </div>
 </div>

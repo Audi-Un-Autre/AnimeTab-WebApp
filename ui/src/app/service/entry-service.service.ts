@@ -8,14 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class EntryServiceService {
 
-  private entryUrl = 'http://localhost:8080/user/entries';
+  private entryUrl = 'http://localhost:8080/entry/all';
 
-  // http request to api url
-  constructor(private http: HttpClient) { 
-    this.http.get<IEntry[]>(this.entryUrl).toPromise().then(data => {
-      console.log(data);
-    })
-  }
+  constructor(private http: HttpClient) { }
 
   getEntries(): Observable<IEntry[]>{
     return this.http.get<IEntry[]>(this.entryUrl);

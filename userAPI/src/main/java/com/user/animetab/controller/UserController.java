@@ -26,8 +26,11 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public void addNewUser(@RequestBody User newUser){
-        userService.addNewUser(newUser);
+    public String addNewUser(@RequestBody User user){
+        String authCorrect = userService.authNewUser(user);
+
+        if(authCorrect.equals("not_found")) userService.addNewUser(user);
+        return authCorrect;
     }
 
     @DeleteMapping("/delete")
@@ -35,13 +38,12 @@ public class UserController {
         userService.deleteUser(user.getUserID());
     }
 
-    
     @PostMapping("/login")
-    public String checkLogin(@RequestBody User user){
+    public boolean checkLogin(@RequestBody User user){
         boolean authCorrect = userService.authLogin(user);
         if (authCorrect)
-            return "User found.";
+            return true;
         else
-            return "User does not exist.";
+            return false;
     }
 }

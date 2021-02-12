@@ -1,19 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SignIn } from '../model/signin';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
 
-  private entryUrl = 'http://localhost:8080/user/all';
+  // base api user url
+  private baseUrl = 'http://localhost:8080/user/login';
 
   constructor(private http:HttpClient) { }
 
-  // check database for login details
-  authLogin(data:any):Observable<any>{
-    console.log(data); // testing purposes
-    return this.http.post<any>(this.entryUrl,data);
+  authenticateLogin(signIn:SignIn):Observable<boolean>{
+
+    // json user object to api & json header
+    var loginDetails = JSON.stringify( {"email": signIn.getEmail(), "password": signIn.getPassword()} );
+    var httpHeader = new HttpHeaders({'Content-Type' : 'application/json'});
+
+    return this.http.post<boolean>(`${this.baseUrl}`, loginDetails, {headers: httpHeader});
+    
   }
 }

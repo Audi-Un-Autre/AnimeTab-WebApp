@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
 import { SplashComponent } from './splash/splash.component';
 import { EntryListComponent } from './entry-list/entry-list.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,7 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     UserComponent,
     SplashComponent,
-    EntryListComponent
+    EntryListComponent,
+    RegistrationComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

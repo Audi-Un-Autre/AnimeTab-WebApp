@@ -31,7 +31,7 @@ public class EntryController {
         return entryService.allEntries();
     }
 
-    @GetMapping("/entry/{id}")
+    @GetMapping("/{id}")
     public Entry viewEntry(@PathVariable("id") Integer entryID){
         return entryService.viewEntry(entryID);
     }
