@@ -15,11 +15,16 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from "@angular/material/card";
+import { MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 import { HttpClientModule } from '@angular/common/http';
+import { AuthrouteLoginGuard } from './authroute/authroute-login.guard';
+//import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -38,14 +43,17 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatToolbarModule,
     HttpClientModule,
     MatCardModule,
     MatInputModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRippleModule,
+    //JwtModule
   ],
-  providers: [],
+  providers: [AuthrouteLoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

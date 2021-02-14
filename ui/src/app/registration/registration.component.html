@@ -21,7 +21,8 @@
 
                             <!-- username invalid -->
                             <div class = "invalid-feedback">
-                            A username is required to sign up.
+                                Username must be at least 4 characters long.
+                                {{ usernameError }}
                             </div>
                     </mat-form-field>
 
@@ -33,12 +34,11 @@
                         <input matInput required
                             formControlName = "email" 
                             type = "email" 
-                            [ngClass]="(values.email.dirty || submitted) &&
-                                        values.email.errors ? 'is-invalid' : ''">
+                            [ngClass]="(submitted || values.password.dirty) && values.password.errors ? 'is-invalid' : ''">
                             
                             <!-- email invalid -->
                             <div class = "invalid-feedback">
-                            A valid email is required to sign up.
+                                A valid email address is required.
                             </div>
                     </mat-form-field>
 
@@ -50,24 +50,16 @@
                         <input matInput required
                             formControlName = "password" 
                             type = "password" 
-                            [ngClass]="(values.password.dirty || submitted) &&
-                                        values.password.errors ? 'is-invalid' : ''">
+                            [ngClass]="(submitted || values.password.dirty) && values.password.errors ? 'is-invalid' : ''">
 
                             <!-- password invalid -->
                             <div class = "invalid-feedback">
-                            Password is required to sign up.
+                                Password must be at least 8 characters long.
                             </div>
                     </mat-form-field>
-                    <p>* required fields</p>
                     
                 <!-- SUBMIT -->
-                    <button mat-raised-button color="primary" class = "button"
-                            [ngClass]="(newAccountFail && submitted) ? 'is-invalid' : ''">
-                            Create
-                    </button>
-                    <p class = "invalid-feedback">
-                        {{newAccountError}}
-                    </p>
+                    <button mat-raised-button color="primary" class = "button">Create</button>
                 </form>
 
         </mat-card>

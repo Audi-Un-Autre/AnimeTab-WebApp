@@ -7,15 +7,17 @@ import { UserComponent } from './user/user.component';
 import { EntryListComponent } from './entry-list/entry-list.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AuthrouteLoginGuard } from './authroute/authroute-login.guard';
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'user', component: UserComponent},
+  {path: 'user', component: UserComponent, canActivate: [AuthrouteLoginGuard]},
   {path: 'splash', component: SplashComponent},
   {path: 'entry-list', component: EntryListComponent},
   {path: 'new-user', component: RegistrationComponent},
-  {path: 'welcome', component:WelcomeComponent}
+  {path: 'welcome', component:WelcomeComponent},
+  {path: '**', redirectTo: ''} // route does not existe
 ];
 
 @NgModule({

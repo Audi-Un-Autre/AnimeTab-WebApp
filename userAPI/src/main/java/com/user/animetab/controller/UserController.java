@@ -2,6 +2,7 @@ package com.user.animetab.controller;
 
 import java.util.List;
 
+import com.user.animetab.model.Session;
 import com.user.animetab.model.User;
 import com.user.animetab.service.UserService;
 
@@ -39,11 +40,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean checkLogin(@RequestBody User user){
+    public Session checkLogin(@RequestBody User user){
         boolean authCorrect = userService.authLogin(user);
         if (authCorrect)
-            return true;
+            return new Session(1, "login_success", "asdasddasda");
         else
-            return false;
+            return new Session(0, "login_failure");
     }
 }

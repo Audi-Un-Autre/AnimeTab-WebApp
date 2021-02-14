@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignUp } from '../model/signup';
+import { AuthServiceService } from '../service/auth-service.service';
 import { RegServiceService } from '../service/reg-service.service';
 
 @Component({
@@ -14,17 +15,21 @@ export class RegistrationComponent implements OnInit {
   submitted:boolean = false;
   newAccountFail:boolean = false;
   newAccountError:string = "";
+  usernameError:string = "";
+  emailError:string = "";
   newAccountForm:FormGroup = this.fb.group({});
 
-  constructor(private regService:RegServiceService, private fb:FormBuilder, private router:Router) {
+  constructor(private regService:RegServiceService, private fb:FormBuilder, private router:Router, private auth:AuthServiceService) {
     this.newAccountForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
    }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    if (this.auth.isAuthenticated()) this.router.navigate(['user']);
+  }
 
   // get form fields
   get values(){
@@ -40,25 +45,28 @@ export class RegistrationComponent implements OnInit {
     // create new user information
     const newUser:SignUp = new SignUp(this.newAccountForm.value.email, this.newAccountForm.value.username, this.newAccountForm.value.password, "LIMITED");
 
-    if (this.newAccountForm.value.username != "" && this.newAccountForm.value.email != "" && this.newAccountForm.value.password != null)
+    if (this.newAccountForm.valid){
       // call to api
       this.regService.authNewUser(newUser).subscribe((userExists:any) => {
         console.log(userExists);
+        // username and email already exist
         if (userExists === "email_exists"){
           this.newAccountFail = true;
-          this.newAccountError = "Email already exists.";
+          this.emailError = "Email already exists.";
           console.log("email exists.");
         }
         else if (userExists === "username_exists"){
           this.newAccountFail = true;
-          this.newAccountError = "Username already exists.";
+          this.usernameError = "Username already exists.";
           console.log("username exists");
         } 
         else {
           this.newAccountFail = false;
-          this.newAccountError = "";
+          this.usernameError = "";
+          this.emailError = "";
           this.router.navigate(["/welcome"]);
         }
       });
+    }
   }
 }

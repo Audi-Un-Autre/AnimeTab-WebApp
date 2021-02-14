@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthServiceService, private fb:FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    if (this.authService.isAuthenticated()) this.router.navigate(['user']);
+
     this.loginForm = this.fb.group({
       email:['', Validators.required],
       password:['', Validators.required]
@@ -38,15 +40,15 @@ export class LoginComponent implements OnInit {
     const signInData:SignIn = new SignIn(this.loginForm.value.email, this.loginForm.value.password);
 
     // pass login to auth service
-    this.authService.authenticateLogin(signInData).subscribe((userExists:boolean) => {
-      if (userExists){
-        console.log("User found.");
-        // !!! TODO localstorage
+    this.authService.authenticateLogin(signInData).subscribe((login:any) => {
+      if (login.response === 1){
+        console.log(`message: ${login.message}`)
+        // !!! TODO localstorage via jwt
+        localStorage.setItem('user_token', 'example');
         this.router.navigate(["/user"]);
       }
-      else
-        console.log("User not found.");
-        // print message that login credentials are not correct.
+      else if(login.response === 0)
+        console.log(`message: ${login.message}`)
         this.loginError = true;
     });
   }
