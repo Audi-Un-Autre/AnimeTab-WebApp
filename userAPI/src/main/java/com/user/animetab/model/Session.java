@@ -4,17 +4,12 @@ public class Session {
 
     private int response;
     private String message;
-    private String token;
+    private final String jwt;
 
-    public Session(int response, String message, String token){
+    public Session(int response, String message, String jwt){
         this.response = response;
         this.message = message;
-        this.token = token;
-    }
-
-    public Session(int response, String message){
-        this.response = response;
-        this.message = message;
+        this.jwt = jwt;
     }
 
     public int getResponse(){
@@ -26,7 +21,7 @@ public class Session {
     }
 
     public String getToken(){
-        return this.token;
+        return this.jwt;
     }
 
 }

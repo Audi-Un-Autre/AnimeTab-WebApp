@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     if (this.authService.isAuthenticated()) this.router.navigate(['user']);
 
     this.loginForm = this.fb.group({
-      email:['', Validators.required],
+      email:['', Validators.required], // Validators.email left off for testing purposes
       password:['', Validators.required]
     })
   }
@@ -39,16 +39,15 @@ export class LoginComponent implements OnInit {
     // Get and store login details
     const signInData:SignIn = new SignIn(this.loginForm.value.email, this.loginForm.value.password);
 
-    // pass login to auth service
+    // pass login info to auth service
     this.authService.authenticateLogin(signInData).subscribe((login:any) => {
       if (login.response === 1){
-        console.log(`message: ${login.message}`)
-        // !!! TODO localstorage via jwt
-        localStorage.setItem('user_token', 'example');
+
+        // recieve token from user api
+        localStorage.setItem('user_token', login.jwt);
         this.router.navigate(["/user"]);
       }
       else if(login.response === 0)
-        console.log(`message: ${login.message}`)
         this.loginError = true;
     });
   }

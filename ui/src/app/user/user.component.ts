@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthServiceService } from '../service/auth-service.service';
 
 @Component({
   selector: 'app-user',
@@ -8,15 +8,13 @@ import { Router } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private auth:AuthServiceService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
-    console.log("clicked");
-    localStorage.removeItem('user_token');
-    this.router.navigate(['']);
+    this.auth.deauthorize();
   }
 
 }

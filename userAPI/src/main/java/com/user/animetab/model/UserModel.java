@@ -1,26 +1,5 @@
 
 
-/*
-*
-*
-
-
-
-
-
-
-
-    
-    TEST model
-    
-
-
-
-
-
-*
-*/
-
 package com.user.animetab.model;
 
 import javax.persistence.Column;
@@ -34,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class UserModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,9 +33,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(){}
+    public UserModel(){}
 
-    public User(String email, String username, String password, Role role){
+    public UserModel(String email, String username, String password, Role role){
         this.email = email;
         this.username = username;
         this.password = password;

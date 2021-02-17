@@ -24,7 +24,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthrouteLoginGuard } from './authroute/authroute-login.guard';
-//import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -50,8 +49,7 @@ import { AuthrouteLoginGuard } from './authroute/authroute-login.guard';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRippleModule,
-    //JwtModule
+    MatRippleModule
   ],
   providers: [AuthrouteLoginGuard],
   bootstrap: [AppComponent]

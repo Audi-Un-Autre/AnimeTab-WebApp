@@ -2,11 +2,11 @@ package com.user.animetab.controller;
 
 import java.util.List;
 
-import com.user.animetab.model.Session;
-import com.user.animetab.model.User;
+import com.user.animetab.model.UserModel;
 import com.user.animetab.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +22,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/all")
-    public List<User> getAllUsers(){
+    public List<UserModel> getAllUsers(){
         return userService.findAllUsers();
     }
 
     @PostMapping("/new")
-    public String addNewUser(@RequestBody User user){
+    public String addNewUser(@RequestBody UserModel user){
         String authCorrect = userService.authNewUser(user);
 
         if(authCorrect.equals("not_found")) userService.addNewUser(user);
@@ -35,16 +35,12 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteUser(@RequestBody User user){
+    public void deleteUser(@RequestBody UserModel user){
         userService.deleteUser(user.getUserID());
     }
 
-    @PostMapping("/login")
-    public Session checkLogin(@RequestBody User user){
-        boolean authCorrect = userService.authLogin(user);
-        if (authCorrect)
-            return new Session(1, "login_success", "asdasddasda");
-        else
-            return new Session(0, "login_failure");
+    @PostMapping("/login") // authentication point
+    public ResponseEntity<?> checkLogin(@RequestBody UserModel user) throws Exception {
+        return ResponseEntity.ok(userService.authLogin(user));
     }
 }
